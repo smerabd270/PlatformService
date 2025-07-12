@@ -1,9 +1,7 @@
-﻿using PlatformService.Data;
-using System.Linq;
-
+﻿using System.Linq;
 using PlatformService.Models;
 
-namespace PlatformService
+namespace PlatformService.Data
 {
     public class PlatformRepo : IPlatformRepo
     {
@@ -16,6 +14,11 @@ namespace PlatformService
 
         public void CreatePlatform(Platform plat)
         {
+            if (plat == null)
+            {
+                throw new ArgumentNullException(nameof(plat));
+            }
+
             _context.Platforms.Add(plat);
         }
 
@@ -23,7 +26,7 @@ namespace PlatformService
         {
             return _context.Platforms.ToList();
         }
-        
+
 
 
         public Platform GetPlatformBId(int id)
@@ -33,7 +36,7 @@ namespace PlatformService
 
         public bool SaveChanges()
         {
-           return (_context.SaveChanges()>=0);
+            return _context.SaveChanges() >= 0;
         }
     }
 }
