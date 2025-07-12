@@ -1,5 +1,5 @@
 ﻿using PlatformService.Data;
-using System.Linq
+using System.Linq;
 
 using PlatformService.Models;
 
@@ -19,14 +19,16 @@ namespace PlatformService
             _context.Platforms.Add(plat);
         }
 
-        public IEnumerable<IPlatformRepo> GetAllPlatforms()
+        public IEnumerable<Platform> GetAllPlatforms()
         {
-            return (IEnumerable<IPlatformRepo>)_context.Platforms.ToList();
+            return _context.Platforms.ToList();
         }
+        
 
-        public Platform GetPlatformBId(int bId)
+
+        public Platform GetPlatformBId(int id)
         {
-            return _context.Platforms.FirstOrDefault(x => x.Id == bId);
+            return _context.Platforms.FirstOrDefault(x => x.Id == id);
         }
 
         public bool SaveChanges()
